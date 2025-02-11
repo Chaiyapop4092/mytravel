@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:mytravel/screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class OnboardingScreen extends StatelessWidget {
@@ -13,32 +14,32 @@ class OnboardingScreen extends StatelessWidget {
         child: IntroductionScreen(
           pages: [
             PageViewModel(
-              title: "Welcome",
-              body: "Explore the amazing features of our app.",
+              title: "เวลคัม",
+              body: "สำรวจแอปสุดอเมซิ่ง.",
               image: buildImage('assets/images/onboarding1.png'),
               decoration: getPageDecoration(),
             ),
             PageViewModel(
-              title: "Easy Navigation",
-              body: "Navigate easily and efficiently.",
+              title: "เนวิเกชั่นแบบง่ายๆ",
+              body: "เนวิเกตแบบง่ายๆและมีประสิทธิภาพ.",
               image: buildImage('assets/images/onboarding2.png'),
               decoration: getPageDecoration(),
             ),
             PageViewModel(
-              title: "Get Started",
-              body: "Sign up and start using the app now.",
+              title: "เริ่มต้วน",
+              body: "สมัครเลย แล้วใช้แอปซะ",
               image: buildImage('assets/images/onboarding3.png'),
               decoration: getPageDecoration(),
               footer: ElevatedButton(
                 onPressed: () => goToHome(context),
-                child: Text("Start Now"),
+                child: Text("เริ่มเลอ"),
               ),
             ),
           ],
-          done: Text("Done", style: TextStyle(fontWeight: FontWeight.w600)),
+          done: Text("ยังไม่เสร็จ", style: TextStyle(fontWeight: FontWeight.w600)),
           onDone: () => goToHome(context),
           showSkipButton: true,
-          skip: Text("Skip"),
+          skip: Text("อย่ากดข้ามนะ"),
           next: Icon(Icons.arrow_forward),
           dotsDecorator: getDotsDecorator(),
         ),
@@ -46,7 +47,11 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  void goToHome(BuildContext context) {
+  void goToHome(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    await prefs.setBool('ON BOARDING', false);
+
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => HomeScreen()),
     );
