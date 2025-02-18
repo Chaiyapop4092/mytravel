@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytravel/screens/sign_in_screen.dart';
+import 'package:mytravel/screens/sign_up_screen.dart';
 import 'package:mytravel/widgets/mybutton.dart';
 import 'package:mytravel/widgets/mytextfield.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  SignInPage({super.key});
 
-  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final pwdController = TextEditingController();
-  final repwdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class SignUpPage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 40),
       child: Column(
         children: [
-          Text('Welcome to our community.',
+          Text('Hello, Ready to get started?',
               textAlign: TextAlign.center,
               style: GoogleFonts.lato(
                 textStyle: Theme.of(context).textTheme.displayLarge,
@@ -27,8 +25,7 @@ class SignUpPage extends StatelessWidget {
                 fontWeight: FontWeight.w800,
                 fontStyle: FontStyle.normal,
               )),
-          Text(
-              '\nTo get started, please provide your info and create an account.',
+          Text('\nTo get started, please sign in with your email and password.',
               textAlign: TextAlign.center,
               style: GoogleFonts.lato(
                 textStyle: Theme.of(context).textTheme.displaySmall,
@@ -38,14 +35,6 @@ class SignUpPage extends StatelessWidget {
               )),
           SizedBox(
             height: 40,
-          ),
-          MyTextField(
-              controller: nameController,
-              labelText: "Name",
-              hintText: 'Enter your name',
-              obscureText: false),
-          SizedBox(
-            height: 20,
           ),
           MyTextField(
               controller: emailController,
@@ -60,34 +49,54 @@ class SignUpPage extends StatelessWidget {
               labelText: "Password",
               hintText: 'Enter your Password',
               obscureText: true),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Forgot Password?',
+                    style: GoogleFonts.lato(
+                      textStyle: Theme.of(context).textTheme.displaySmall,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           SizedBox(
             height: 20,
           ),
-          MyTextField(
-              controller: repwdController,
-              labelText: "Confirm Password",
-              hintText: 'Enter your password again',
-              obscureText: true),
-          SizedBox(
-            height: 30,
-          ),
-          MyButton(onTap: () {}, labelText: 'Sign Up'),
+          MyButton(onTap: () {}, labelText: 'Sign In'),
           SizedBox(
             height: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Have a member?'),
+              Text('Not a member?'),
               SizedBox(
                 width: 2,
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignInPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignUpPage(),
+                    ),
+                  );
                 },
-                child: Text('Sign In.',
+                child: Text('Register now.',
                     style: GoogleFonts.lato(
                       fontStyle: FontStyle.italic,
                     )),
