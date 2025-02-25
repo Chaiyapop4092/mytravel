@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(textTheme: GoogleFonts.lexendTextTheme()),
       title: 'My Travel 1.0',
       //home: show ? const OnboardingScreen() : const HomeScreen(),
-      home: show ? const OnboardingScreen() : SignUpPage(),
+      home: show ? const OnboardingScreen() : HomeScreen(),
     );
   }
 }
