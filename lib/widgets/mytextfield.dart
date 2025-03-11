@@ -6,10 +6,10 @@ class MyTextField extends StatelessWidget {
     required this.controller,
     required this.labelText,
     required this.hintText,
-    required this.obscureText,
+    required this.obscureText, // Corrected here
   });
 
-  final controller;
+  final TextEditingController controller; // Added specific type
   final String labelText;
   final String hintText;
   final bool obscureText;
